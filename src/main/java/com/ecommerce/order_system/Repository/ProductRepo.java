@@ -20,5 +20,7 @@ public interface ProductRepo extends JpaRepository<Product, Integer>{
 	
 	
 	Page<Product> findByCountry(String country, Pageable pageable);
+	
+	Page<Product> findByCustomerID(int customerID, Pageable pageable);
 
 }

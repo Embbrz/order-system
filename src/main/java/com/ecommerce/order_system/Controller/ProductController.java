@@ -43,6 +43,12 @@ public class ProductController {
 		return this.productservice.getAll(page);
 	}
 	
+	@GetMapping("/SearchByCustomerIDHistory/{id}/")
+	public Page<Product> findCustomerId(@PathVariable int id,
+			@RequestParam(defaultValue = "0") int page){
+		return this.productservice.findCustomerIdHistory(id, page);
+	}
+	
 	@GetMapping("/viewProduct")
 	public Page<Product> veiwProduct(){
 	    

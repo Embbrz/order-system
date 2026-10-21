@@ -36,6 +36,13 @@ public class ProductService {
 		return productrepo.findAll(pageable);
 	}
 	
+	public Page<Product> findCustomerIdHistory(int id, int page){
+		Pageable pageable = PageRequest.of(page, 5);
+		return this.productrepo.findByCustomerID(id, pageable);
+
+		
+	}
+	
 	public Page<Product> filterByCountry(String country, int page, int size){
 		Pageable pageable = PageRequest.of(page, size);
 		return productrepo.findByCountry(country, pageable);
