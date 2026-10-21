@@ -2,6 +2,8 @@ package com.ecommerce.order_system.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,35 +26,35 @@ public class ProductController {
 	}
 	
 	@GetMapping("/findInvoiceNo/search")
-	public Page<Product> filterByInvoiceNo(@RequestParam String invoiceNo,
-			@RequestParam(defaultValue = "0") int page,
-			@RequestParam(defaultValue = "10") int size) {
+	public Page<Product> filterByInvoiceNo(@RequestParam String invoiceNo, 
+			@PageableDefault(page = 0, size = 20)Pageable pageable) {
 		
-		return this.productservice.findByInvoiceNo(invoiceNo, page, size);
+		
+		return this.productservice.findByInvoiceNo(invoiceNo, pageable);
 	}
 	
 	@GetMapping("/filterByCountry/{country}")
 	public Page<Product> filterByCountry(@PathVariable String country,
-			@RequestParam(defaultValue = "0") int page,
-			@RequestParam(defaultValue = "0") int size){
-		return this.productservice.filterByCountry(country, page, size);
+			@PageableDefault(page = 0, size = 20)Pageable pageable){
+		
+		return this.productservice.filterByCountry(country, pageable);
 	}
 	
-	@GetMapping("/{page}")
-	public Page<Product> viewAll(@PathVariable Integer page){
-		return this.productservice.getAll(page);
+	@GetMapping
+	public Page<Product> viewAll(@PageableDefault(page = 0, size = 20)Pageable pageable){
+		return this.productservice.getAll(pageable);
 	}
 	
 	@GetMapping("/SearchByCustomerIDHistory/{id}/")
-	public Page<Product> findCustomerId(@PathVariable int id,
-			@RequestParam(defaultValue = "0") int page){
-		return this.productservice.findCustomerIdHistory(id, page);
+	public Page<Product> findCustomerId(@PathVariable int id, 
+			@PageableDefault(page = 0, size = 20)Pageable pageable){
+		return this.productservice.findCustomerIdHistory(id, pageable);
 	}
 	
-	@GetMapping("/viewProduct")
-	public Page<Product> veiwProduct(){
+	@GetMapping("/viewProduct/")
+	public Page<Product> veiwProduct(@PageableDefault(page = 0, size = 20)Pageable pageable){
 	    
-		return this.productservice.viewProducts();
+		return this.productservice.viewProducts(pageable);
 		
 	}
 	
