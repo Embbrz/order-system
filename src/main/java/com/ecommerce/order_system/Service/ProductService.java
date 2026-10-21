@@ -31,6 +31,11 @@ public class ProductService {
 		
 	}
 	
+	public Page<Product> getAll(Integer page){
+		Pageable pageable = PageRequest.of(page,  10);
+		return productrepo.findAll(pageable);
+	}
+	
 	public Page<Product> filterByCountry(String country, int page, int size){
 		Pageable pageable = PageRequest.of(page, size);
 		return productrepo.findByCountry(country, pageable);

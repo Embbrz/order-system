@@ -38,6 +38,11 @@ public class ProductController {
 		return this.productservice.filterByCountry(country, page, size);
 	}
 	
+	@GetMapping("/{page}")
+	public Page<Product> viewAll(@PathVariable Integer page){
+		return this.productservice.getAll(page);
+	}
+	
 	@GetMapping("/viewProduct")
 	public Page<Product> veiwProduct(){
 	    
