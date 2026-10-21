@@ -18,5 +18,7 @@ import com.ecommerce.order_system.Entity.Product;
 public interface ProductRepo extends JpaRepository<Product, Integer>{
 	Page<Product> findByInvoiceNo(String invoiceNo, Pageable pageable);
 	
+	
+	Page<Product> findByCountry(String country, Pageable pageable);
 
 }

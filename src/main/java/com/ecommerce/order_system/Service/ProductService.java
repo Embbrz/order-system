@@ -31,6 +31,11 @@ public class ProductService {
 		
 	}
 	
+	public Page<Product> filterByCountry(String country, int page, int size){
+		Pageable pageable = PageRequest.of(page, size);
+		return productrepo.findByCountry(country, pageable);
+	}
+	
 	public Page<Product> findByInvoiceNo(String invoiceNo, int page, int size){
 		Pageable pageable = PageRequest.of(page, size);
 		return productrepo.findByInvoiceNo(invoiceNo, pageable);
